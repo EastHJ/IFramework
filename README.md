@@ -1,10 +1,10 @@
-#SpringBoot框架搭建学习
+# SpringBoot框架搭建学习
 
 ### 第一章 创建项目
 
 
   
-    第一步: 通过SpringBoot 创建项目
+    第一步: 通过SpringBoot 创建项目 <br>
     
   1 . 项目简要说明：
   
@@ -32,12 +32,15 @@
    > NoSQL : Redis <br>
    > Integration : RabbitMQ <br>
    > I/O  : Quartz Scheduler
+   
   ![图3](./doc/img/create_project_3.png)
   
    
    4 . 选择完成之后next 下一步然后Finsh 完成
    
+   
    项目完成之后的项目结构图如下所示：
+   
     ![图4](./doc/img/create_project_4.png)
     
     
