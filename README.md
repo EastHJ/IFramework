@@ -4,7 +4,7 @@
 
 
   
-    第一步: 通过SpringBoot 创建项目 <br>
+    第一步: 通过SpringBoot 创建项目
     
   1 . 项目简要说明：
   
@@ -41,6 +41,6 @@
    
    项目完成之后的项目结构图如下所示：
    
-    ![图4](./doc/img/create_project_4.png)
+ ![图4](./doc/img/create_project_4.png)
     
     
