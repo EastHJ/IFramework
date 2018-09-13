@@ -152,11 +152,11 @@ spring:
  
  用户名和密码就是我么在配置类中填写的用户名和密码：
  
- ![druid用户名和密码](doc/img/002_add_druid/add_druid_009.png)
+ ![druid用户名和密码](./doc/img/002_add_druid/add_druid_009.png)
  ----
  
  登陆后的监控页面如下图：
- ![druid监控页面](doc/img/002_add_druid/add_druid_010.png)
+ ![druid监控页面](./doc/img/002_add_druid/add_druid_010.png)
  ----
  
  可以看到大致包含了如下几个模块：数据源、SQL监控、SQL防火墙、Web应用、URI监控、Session监控、JSONAPI等。
