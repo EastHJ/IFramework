@@ -183,3 +183,65 @@ spring:
  通过api的形式访问Druid的监控接口，api接口返回Json形式数据。
  
  至此，我们项目关于Druid 的集成就已经完成了。
+ 
+ ### **第三章 项目集成 Spring Data JPA 执行基本的CURD**
+ 
+   SpringBoot框架提供了许多有用的组件，我们需要时直接添加相应的依赖使用就可以了。接下来我们先测试在项目中使用Sping Data JPA 完成基本的CURD。
+ 我们在创建项目时，已经添加了JPA 相关的依赖，我们的数据库使用MySQL，如果使用其他的数据库可以根据需要引入不同的依赖支持。
+   
+   接下来我们进行JPA 集成测试。
+   
+   ##### **本章目标**
+   
+   学习并且使用SpringBoot访问MySQL数据库，并且结合SpringDataJPA完成CRUD（Create,Read,Update,Delete）简单操作。
+   
+   
+   > 1 . 在项目中添加JPA 相关配置
+  
+  ```yaml
+  jpa:
+      database: mysql
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+``` 
+
+ > 2 . 数据库中创建测试表
+ 
+ ```sql
+-- ----------------------------
+-- Table structure for sys_user
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user`;
+CREATE TABLE `sys_user`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键id',
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
+  `account` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '账号',
+  `password` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
+  `salt` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'md5密码盐',
+  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名字',
+  `birthday` date NULL DEFAULT NULL COMMENT '生日',
+  `sex_id` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '性别（1：男 2：女）',
+  `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电子邮件',
+  `mobile_phone` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话',
+  `role_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色id',
+  `dept_id` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '部门id',
+  `status` int(11) NULL DEFAULT NULL COMMENT '状态(1：启用  2：冻结  3：删除）',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `cancel_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '作废人',
+  `cancel_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '作废时间',
+  `create_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `tag` int(4) NULL DEFAULT 999 COMMENT '标签，-1为删除',
+  `update_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员表' ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+```
+
+
+> 3 . 创建实体
+
+我们根据数据库中的字段对应创建一个User来作为对应操作
