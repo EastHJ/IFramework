@@ -69,7 +69,7 @@ public abstract class BaseEntity {
     /**
      * 作废时间
      */
-    @Column(name = "CANCEL_TIME", columnDefinition = "DATETIME NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '作废时间'")
+    @Column(name = "CANCEL_TIME", columnDefinition = "DATETIME  ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '作废时间'")
     @Temporal(value = TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     private Date cancelTime;
