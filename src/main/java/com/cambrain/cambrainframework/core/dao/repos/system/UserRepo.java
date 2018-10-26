@@ -2,6 +2,7 @@ package com.cambrain.cambrainframework.core.dao.repos.system;
 
 import com.cambrain.cambrainframework.core.dao.repos.BaseRepo;
 import com.cambrain.cambrainframework.core.domain.po.system.User;
+import org.springframework.stereotype.Repository;
 
 /**
  * @ProjectName: [IFramework]
@@ -15,5 +16,6 @@ import com.cambrain.cambrainframework.core.domain.po.system.User;
  * @UpdateRemark: [说明本次修改内容]
  * @Version: [v1.0]
  */
+@Repository
 public interface UserRepo extends BaseRepo<User,String> {
 }

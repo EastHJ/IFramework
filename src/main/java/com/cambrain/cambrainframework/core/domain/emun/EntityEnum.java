@@ -23,15 +23,15 @@ public enum EntityEnum {
      */
     TAG_CANCEL(-1, "作废"),
     /**
-     * 用户数据状态 启用
+     * 数据状态 启用
      */
     STATUS_ENABLE(10, "启用"),
     /**
-     * 用户数据状态 停用
+     * 数据状态 停用
      */
     STATUS_DISABLE(20, "禁用"),
     /**
-     * 用户数据状态 删除
+     * 数据状态 删除
      */
     STATUS_DELETE(30, "删除");
 

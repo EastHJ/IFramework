@@ -34,11 +34,19 @@ public interface BaseService<T> {
 
 
     /**
-     * 新增修改记录
-     * @param var1
+     * 删除记录
+     * @param id
      * @return
      */
-    T modify(T var1);
+    T delete(String id);
+
+
+    /**
+     * 新增修改记录
+     * @param entity
+     * @return
+     */
+    T modify(T  entity);
 
     /**
      * 根据Id获取记录
