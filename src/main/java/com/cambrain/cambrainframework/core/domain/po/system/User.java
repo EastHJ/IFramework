@@ -1,7 +1,7 @@
-package com.cambrain.cambrainframework.core.domain.entity.system;
+package com.cambrain.cambrainframework.core.domain.po.system;
 
-import com.cambrain.cambrainframework.core.domain.entity.BaseEntity;
-import com.cambrain.cambrainframework.core.domain.enum_info.EntityEnum;
+import com.cambrain.cambrainframework.core.domain.po.BaseEntity;
+import com.cambrain.cambrainframework.core.domain.emun.EntityEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -27,7 +27,7 @@ public class User extends BaseEntity {
     /**
      * 头像
      */
-    @Column(name = "AVATAR", columnDefinition = "VARCHAR(MAX) COMMENT '头像'")
+    @Column(name = "AVATAR", columnDefinition = "VARCHAR(16000) COMMENT '头像'")
     private String avatar;
     /**
      * 账号
@@ -37,12 +37,12 @@ public class User extends BaseEntity {
     /**
      * 密码
      */
-    @Column(name = "PASSWORD", columnDefinition = "VARCHAR(MAX) COMMENT '密码'")
+    @Column(name = "PASSWORD", columnDefinition = "VARCHAR(64) COMMENT '密码'")
     private String password;
     /**
      * md5密码校验
      */
-
+    @Column(name = "MD5_SALT", columnDefinition = "VARCHAR(64) COMMENT 'MD5加密校验盐'")
     private String salt;
     /**
      * 名字
@@ -92,30 +92,4 @@ public class User extends BaseEntity {
         this.setStatus(EntityEnum.STATUS_ENABLE.getCode());
     }
 
-
-
-
-//    /**
-//     * 重写ToString 方法
-//     *
-//     * @return
-//     */
-//    @Override
-//    public String toString() {
-//        StringBuffer sbf = new StringBuffer();
-//        sbf.append("User_").append(super.getId()).append(":{\n").append(super.toString())
-//                .append(",avatar=").append(this.avatar)
-//                .append(",account=").append(this.account)
-//                .append(",password=").append(this.password)
-//                .append(",name=").append(this.name).append("\n")
-//                .append(",birthday=").append(this.birthday)
-//                .append(",sexId=").append(this.sexId)
-//                .append(",email=").append(this.email)
-//                .append(",mobilePhone=").append(this.mobilePhone).append("\n")
-//                .append(",roleId=").append(this.roleId)
-//                .append(",deptId=").append(this.deptId)
-//                .append(",status=").append(this.status)
-//                .append("\n}\n");
-//        return sbf.toString();
-//    }
 }

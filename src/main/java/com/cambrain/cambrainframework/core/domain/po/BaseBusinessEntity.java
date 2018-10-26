@@ -1,4 +1,4 @@
-package com.cambrain.cambrainframework.core.domain.entity;
+package com.cambrain.cambrainframework.core.domain.po;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -36,11 +36,5 @@ public abstract class BaseBusinessEntity extends BaseEntity {
     @Temporal(value = TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     private Date businessDate;
-
-
-//    @Override
-//    public String toString() {
-//        return super.toString() + ",businessDate=" + this.businessDate;
-//    }
 
 }

@@ -1,6 +1,7 @@
-package com.cambrain.cambrainframework.core.domain.entity;
+package com.cambrain.cambrainframework.core.domain.po;
 
-import com.cambrain.cambrainframework.core.domain.enum_info.EntityEnum;
+
+import com.cambrain.cambrainframework.core.domain.emun.EntityEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -105,17 +106,4 @@ public abstract class BaseEntity {
     }
 
 
-//    @Override
-//    public String toString() {
-//        StringBuffer sbf = new StringBuffer();
-//        sbf.append("ID=").append(this.id)
-//                .append(",createTime=").append(this.createTime)
-//                .append(",createName=").append(this.createName)
-//                .append(",updateTime=").append(this.updateTime).append("\n")
-//                .append(",updateName=").append(this.updateName)
-//                .append(",cancelTime=").append(this.cancelTime)
-//                .append(",cancelName=").append(this.cancelName)
-//                .append(",tag=").append(this.tag).append("\n");
-//        return sbf.toString();
-//    }
 }

@@ -1,4 +1,4 @@
-package com.cambrain.cambrainframework.core.domain.enum_info;
+package com.cambrain.cambrainframework.core.domain.emun;
 
 /**
  * @ProjectName: [cambrianc]
