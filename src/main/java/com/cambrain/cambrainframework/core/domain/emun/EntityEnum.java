@@ -14,11 +14,25 @@ package com.cambrain.cambrainframework.core.domain.emun;
  */
 
 public enum EntityEnum {
-
+    /**
+     * TAG_NEW 数据新建
+     */
     TAG_NEW(999, "新建"),
+    /**
+     * 数据作废
+     */
     TAG_CANCEL(-1, "作废"),
+    /**
+     * 用户数据状态 启用
+     */
     STATUS_ENABLE(10, "启用"),
+    /**
+     * 用户数据状态 停用
+     */
     STATUS_DISABLE(20, "禁用"),
+    /**
+     * 用户数据状态 删除
+     */
     STATUS_DELETE(30, "删除");
 
 

@@ -1,9 +1,10 @@
 package com.cambrain.cambrainframework.core.domain.po.system;
 
-import com.cambrain.cambrainframework.core.domain.po.BaseEntity;
 import com.cambrain.cambrainframework.core.domain.emun.EntityEnum;
+import com.cambrain.cambrainframework.core.domain.po.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
  * @ProjectName: [cambrianc]
  * @Package: [com.cambrain.cambrianc.core.entity.system]
  * @ClassName: [User]
- * @Description: // TODO  [一句话描述该类的功能]
+ * @Description:  用户实体类
  * @Author: [EastHJ]
  * @CreateDate: [2018-08-01 10:05]
  * @UpdateUser: [EastHJ]
@@ -23,6 +24,7 @@ import java.util.Date;
 @Entity
 @Data
 @Table(name = "SYS_USER")
+@EqualsAndHashCode(callSuper = false)
 public class User extends BaseEntity {
     /**
      * 头像

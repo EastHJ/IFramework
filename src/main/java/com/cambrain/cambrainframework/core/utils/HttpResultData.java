@@ -25,10 +25,14 @@ public class HttpResultData<T> {
     public static final boolean SUCCESS = true;
     public static final boolean FAIL = false;
 
-    //状态
+    /**
+     *   响应状态
+     */
     @Builder.Default
     protected boolean success = true;
-    //数据
+    /**
+     *     待返回数据
+     */
     protected T data;
     /**
      * 相关信息
