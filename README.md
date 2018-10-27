@@ -8,7 +8,7 @@
     
   1 . 项目简要说明：
   
-  >  - jdk版本: jdk-10
+  >  - jdk版本: jdk-8
   >  - 项目构建方式：Gradle
   >  - Spring Boot 版本： 2.0.5.RELEASE
   
