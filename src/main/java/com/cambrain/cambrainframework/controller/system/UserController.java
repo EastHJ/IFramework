@@ -1,6 +1,5 @@
 package com.cambrain.cambrainframework.controller.system;
 
-import com.cambrain.cambrainframework.core.domain.po.system.User;
 import com.cambrain.cambrainframework.core.service.system.UserService;
 import com.cambrain.cambrainframework.core.utils.HttpResultData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import static com.cambrain.cambrainframework.core.utils.HttpResultData.SUCCESS;
  * @ProjectName: [cambrainframework]
  * @Package: [com.cambrain.cambrainframework.controller.system]
  * @ClassName: [UserController]
- * @Description:  TODO  填写功能描述
+ * @Description:  用户相关控制器
  * @Author: [EastHJ]
  * @CreateDate: [2018-10-27 19:47]
  * @UpdateUser: [EastHJ]

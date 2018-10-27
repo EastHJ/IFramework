@@ -2,7 +2,6 @@ package com.cambrain.cambrainframework.core.service.system;
 
 import com.cambrain.cambrainframework.core.domain.po.system.User;
 import com.cambrain.cambrainframework.core.service.BaseService;
-import org.springframework.stereotype.Service;
 
 /**
  * @ProjectName: [IFramework]
