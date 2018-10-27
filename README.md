@@ -520,3 +520,31 @@ public class UserServiceTest {
 ![单元测试类](./doc/img/003_EntityTest/test_run_first.png)
 ![单元测试2](./doc/img/003_EntityTest/test_run_second.png)
 当单元测试完成后，此时使用JPA进行数据访问的功能就添加成功了。
+
+###第四章 项目集成阿里的FastJson
+
+>Fastjson是一个Java语言编写的高性能功能完善的JSON库。它采用一种“假定有序快速匹配”的算法，把JSON Parse的性能提升到极致，是目前Java语言中最快的JSON库。Fastjson接口简单易用，已经被广泛使用在缓存序列化、协议交互、Web输出、Android客户端等多种应用场景。
+  
+  主要特点：
+  
+  >快速FAST (比其它任何基于Java的解析器和生成器更快，包括jackson）<br>
+  >强大（支持普通JDK类包括任意Java Bean Class、Collection、Map、Date或enum）<br>
+  >零依赖（没有依赖其它任何类库除了JDK）
+  
+ FastJson的官方仓库地址为：https://github.com/alibaba/fastjson
+ 
+ ####本章目标
+     我们接下来将在我们的项目中集成FastJson来处理前后端数据的处理。
+     
+  >**1.项目添加依赖**
+  
+  由于我们用的时Gradle来管理我们的依赖，所以，我们先通过maven仓库查询，FastJson的Gradle依赖，如下图：
+  ![查询FastJson依赖配置](./doc/img/004_add_fastJson/query_fastJson.png)
+  之后我们复制相应的Gradle配置，添加到我们的项目中，见下图
+  ![项目添加FastJson依赖](./doc/img/004_add_fastJson/fastJson_gradle_setting.png)
+  接下来刷新，Gradle配置之后就可以讲FastJson依赖添加到我们项目中。
+  如图:
+  ![刷新配置](./doc/img/004_add_fastJson/fastjson_setting_add_project.png)
+  
+  >**2.添加FastJson配置类**
+  
