@@ -245,3 +245,278 @@ SET FOREIGN_KEY_CHECKS = 1;
 > 3 . 创建实体
 
 我们根据数据库中的字段对应创建一个User来作为对应操作
+```java
+public class User extends BaseEntity {
+/**
+     * 头像
+     */
+    @Column(name = "AVATAR", columnDefinition = "VARCHAR(16000) COMMENT '头像'")
+    private String avatar;
+    /**
+     * 账号
+     */
+    @Column(name = "ACCOUNT", columnDefinition = "VARCHAR(64) COMMENT '账号'")
+    private String account;
+    /**
+     * 密码
+     */
+    @Column(name = "PASSWORD", columnDefinition = "VARCHAR(64) COMMENT '密码'")
+    private String password;
+    /**
+     * md5密码校验
+     */
+    @Column(name = "MD5_SALT", columnDefinition = "VARCHAR(64) COMMENT 'MD5加密校验盐'")
+    private String salt;
+    /**
+     * 名字
+     */
+    @Column(name = "NAME", columnDefinition = "VARCHAR(64) COMMENT '用户名称'")
+    private String name;
+    /**
+     * 生日
+     */
+    @Column(name = "BIRTHDAY", columnDefinition = "DATE  COMMENT '生日'")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    private Date birthday;
+    /**
+     * 性别（1：男 2：女）
+     */
+    @Column(name = "SEX_ID", columnDefinition = "VARCHAR(64) COMMENT '性别ID'")
+    private String sexId;
+    /**
+     * 电子邮件
+     */
+    @Column(name = "EMAIL", columnDefinition = "VARCHAR(64) COMMENT '邮箱'")
+    private String email;
+    /**
+     * 电话
+     */
+    @Column(name = "MOBILE_PHONE", columnDefinition = "VARCHAR(64) COMMENT '手机'")
+    private String mobilePhone;
+    /**
+     * 角色id
+     */
+    @Column(name = "ROLE_ID", columnDefinition = "VARCHAR(64) COMMENT '角色ID'")
+    private String roleId;
+    /**
+     * 部门id
+     */
+    @Column(name = "DEPT_ID", columnDefinition = "VARCHAR(64) COMMENT '部门ID'")
+    private String deptId;
+    /**
+     * 状态(10：启用  20：冻结  30：删除）
+     */
+    @Column(name = "STATUS", columnDefinition = "INT COMMENT '状态'")
+    private Integer status;
+}
+```
+编写实体类如图
+
+![创建实体类](./doc/img/003_EntityTest/entity_test.png)
+
+>4.编写数据操作类
+如下图：
+![数据操作类](./doc/img/003_EntityTest/entity_repo.png)
+```java
+package com.cambrain.cambrainframework.core.dao.repos.system;
+
+import com.cambrain.cambrainframework.core.dao.repos.BaseRepo;
+import com.cambrain.cambrainframework.core.domain.po.system.User;
+import org.springframework.stereotype.Repository;
+
+/**
+ * @ProjectName: [IFramework]
+ * @Package: [com.cambrain.cambrainframework.core.dao.repos.system]
+ * @ClassName: [UserRepo]
+ * @Description: 用户数据操作仓库
+ * @Author: [EastHJ]
+ * @CreateDate: [2018-10-26 15:23]
+ * @UpdateUser: [EastHJ]
+ * @UpdateDate: [2018-10-26 15:23]
+ * @UpdateRemark: [说明本次修改内容]
+ * @Version: [v1.0]
+ */
+@Repository
+public interface UserRepo extends BaseRepo<User,String> {
+}
+
+```
+>5.编写业务类<br>
+业务类接口
+
+```java
+package com.cambrain.cambrainframework.core.service.system;
+
+import com.cambrain.cambrainframework.core.domain.po.system.User;
+import com.cambrain.cambrainframework.core.service.BaseService;
+import org.springframework.stereotype.Service;
+
+/**
+ * @ProjectName: [IFramework]
+ * @Package: [com.cambrain.cambrainframework.core.service.system]
+ * @ClassName: [UserService]
+ * @Description:  用户业务接口类
+ * @Author: [EastHJ]
+ * @CreateDate: [2018-10-26 15:44]
+ * @UpdateUser: [EastHJ]
+ * @UpdateDate: [2018-10-26 15:44]
+ * @UpdateRemark: [说明本次修改内容]
+ * @Version: [v1.0]
+ */
+
+public interface UserService extends BaseService<User> {
+}
+
+```
+业务实现类
+```java
+package com.cambrain.cambrainframework.core.service.system.impl;
+
+import com.cambrain.cambrainframework.core.dao.repos.system.UserRepo;
+import com.cambrain.cambrainframework.core.domain.emun.EntityEnum;
+import com.cambrain.cambrainframework.core.domain.po.system.User;
+import com.cambrain.cambrainframework.core.service.system.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * @ProjectName: [IFramework]
+ * @Package: [com.cambrain.cambrainframework.core.service.system.impl]
+ * @ClassName: [UserServiceImpl]
+ * @Description:  用户业务逻辑实现类
+ * @Author: [EastHJ]
+ * @CreateDate: [2018-10-26 15:46]
+ * @UpdateUser: [EastHJ]
+ * @UpdateDate: [2018-10-26 15:46]
+ * @UpdateRemark: [说明本次修改内容]
+ * @Version: [v1.0]
+ */
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserRepo userRepo;
+
+    @Override
+    public List<User> list(User e) {
+        List<User> users =   userRepo.findAll();
+        return  users;
+    }
+
+    @Override
+    public User cancle(String id) {
+      User user =   userRepo.findById(id).get();
+        if(null != user)
+        {
+            user.setTag(EntityEnum.TAG_CANCEL.getCode());
+            userRepo.save(user);
+        }
+        return user;
+    }
+
+    @Override
+    public User delete(String id) {
+        User user =   userRepo.findById(id).get();
+        if(null != user)
+        {
+            user.setStatus(EntityEnum.STATUS_DELETE.getCode());
+            userRepo.save(user);
+        }
+        return user;
+    }
+
+
+    @Override
+    public User modify(User entity) {
+
+        userRepo.save(entity);
+        User user = userRepo.findById(entity.getId()).get();
+
+        return user;
+    }
+
+
+
+    @Override
+    public User findById(String id) {
+        User user = userRepo.findById(id).get();
+        return user;
+    }
+}
+
+```
+>6.编写测试类
+```java
+package com.cambrain.cambrainframework.system;
+
+import com.cambrain.cambrainframework.core.domain.po.system.User;
+import com.cambrain.cambrainframework.core.service.system.UserService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.transaction.Transactional;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * @ProjectName: [IFramework]
+ * @Package: [com.cambrain.cambrainframework.system]
+ * @ClassName: [UserServiceTest]
+ * @Description:  TODO  填写功能描述
+ * @Author: [EastHJ]
+ * @CreateDate: [2018-10-26 21:59]
+ * @UpdateUser: [EastHJ]
+ * @UpdateDate: [2018-10-26 21:59]
+ * @UpdateRemark: [说明本次修改内容]
+ * @Version: [v1.0]
+ */
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class UserServiceTest {
+
+    @Autowired
+    private UserService userService;
+
+    @Test
+    @Transactional
+    @Rollback
+    public  void createUserTest(){
+        User user = new User();
+        user.setAccount("UserTestOne");
+        user.setBirthday(new Date());
+        user.setEmail("1234567@126.com");
+        user.setName("小明");
+        user.setMobilePhone("18689999999");
+        user.setPassword("123456789999");
+        user.setSalt("145869656");
+        userService.modify(user);
+        System.out.println(user.toString());
+    }
+
+   @Test
+    public void findUserTest(){
+        List<User> userList = userService.list(null);
+        System.out.println(userList);
+        userList.forEach(u->{
+            System.out.println(u.toString());
+        });
+    }
+
+}
+
+```
+
+![单元测试类](./doc/img/003_EntityTest/business_test.png)
+
+>7.运行测试类
+当业务运行的各个类编写完成之后，通过单元测试运行来测试业务流程是否可以运行，当测试成功后，则说明业务流程可以正常处理。
+![单元测试类](./doc/img/003_EntityTest/test_run_first.png)
+![单元测试2](./doc/img/003_EntityTest/test_run_second.png)
+当单元测试完成后，此时使用JPA进行数据访问的功能就添加成功了。
